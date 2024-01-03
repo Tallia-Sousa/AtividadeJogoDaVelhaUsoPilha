@@ -28,9 +28,11 @@ public class JogoDaVelhaGUI extends Application {
 
         primaryStage.setTitle("Jogo da Velha");
 
+
         VBox root = new VBox();
         root.setAlignment(Pos.CENTER);
         root.setSpacing(20);
+        root.setStyle("-fx-background-color: #FFC0CB;");
 
         // Adiciona a mensagem inicial
         root.getChildren().add(mensagemInicial());
@@ -40,6 +42,18 @@ public class JogoDaVelhaGUI extends Application {
 
         // Adiciona o botão de iniciar o jogo
         Button btnIniciar = new Button("Iniciar Jogo");
+
+       btnIniciar.setStyle("-fx-background-color: #FFD1DC;; -fx-background-radius: 1em;");
+
+        btnIniciar.setStyle("-fx-background-color: #FFD1DC; -fx-background-radius: 20em;");
+
+// Adiciona efeito visual quando o botão é pressionado
+        btnIniciar.setOnMousePressed(event -> btnIniciar.setStyle("-fx-background-color: #FFA07A; -fx-background-radius: 20em;"));
+
+// Remove o efeito visual quando o botão é solto
+        btnIniciar.setOnMouseReleased(event -> btnIniciar.setStyle("-fx-background-color: #FFD1DC; -fx-background-radius: 20em;"));
+
+        btnIniciar.setMinSize(120, 40);
         btnIniciar.setOnAction(event -> iniciarJogo());
         root.getChildren().add(btnIniciar);
 
@@ -56,10 +70,12 @@ public class JogoDaVelhaGUI extends Application {
         tabuleiro.setAlignment(Pos.CENTER);
         tabuleiro.setHgap(5);
         tabuleiro.setVgap(5);
+      ;
 
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 Button button = criarBotao(row, col);
+                button.setStyle("-fx-background-color: #FFD1DC; -fx-background-radius: 1em;");
                 tabuleiro.add(button, col, row);
             }
         }
@@ -95,7 +111,7 @@ public class JogoDaVelhaGUI extends Application {
                 reiniciarJogo();
             } else {
                 jogoDaVelha.alternarJogador();
-                mostrarMensagemJogadorAtual();
+//                mostrarMensagemJogadorAtual();
             }
         }
     }
@@ -108,6 +124,7 @@ public class JogoDaVelhaGUI extends Application {
             if (node instanceof Button) {
                 Button button = (Button) node;
                 button.setText("");
+
             }
         }
 
@@ -153,7 +170,7 @@ public class JogoDaVelhaGUI extends Application {
 
     private void iniciarJogo() {
         jogoDaVelha.reiniciar();
-        mostrarMensagemJogadorAtual();
+//        mostrarMensagemJogadorAtual();
         jogoIniciado = true;
 
         // Limpar textos dos botões no tabuleiro
